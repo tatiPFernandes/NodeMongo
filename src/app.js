@@ -13,9 +13,7 @@ const app = async () =>{
         await connection(addMovie, newMovie)
     }else if (command === "list"){
         await connection(listMovies)
-    }else if (command === "filter") {
-            await connection(filterMovie, process.argv[3], process.argv[4]);
-    
+        
     }else if(command === "update"){
         const movieUpdate = {
             id: process.argv[3],
