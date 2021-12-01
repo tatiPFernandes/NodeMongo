@@ -1,5 +1,5 @@
 const connection = require("./db/connection")
-const {addMovie, listMovies, updateMovie, deleteMovie} = require("./utils")
+const {addMovie, listMovies, updateMovie, deleteMovie, filterMovie} = require("./utils")
 
 const command = process.argv[2]
 
@@ -13,6 +13,8 @@ const app = async () =>{
         await connection(addMovie, newMovie)
     }else if (command === "list"){
         await connection(listMovies)
+    }else if (command === "filter") {
+            await connection(filterMovie, process.argv[3], process.argv[4]);
     
     }else if(command === "update"){
         const movieUpdate = {
@@ -24,12 +26,12 @@ const app = async () =>{
         await connection(updateMovie, movieUpdate)
     }else if(command === "delete"){
         const movieDelete ={
-            id: process.argv[3]
+            title: process.argv[3]
         }
         console.log("Movie deleted")
         await connection(deleteMovie, movieDelete)
     }else{
-        console.log("Incorrect command!")
+        console.log("Incorrect command")
     }
 }
 
