@@ -16,3 +16,30 @@ exports.listMovies = async (collection) =>{
         console.log(error)
     }
 }
+
+
+exports.updateMovie = async (collection, dataObj)=>{
+    try{
+        await collection.updateOne(
+    {
+        id: dataObj.id
+    },
+    {
+        $set: {
+            "title": dataObj.title,
+            "actor": dataObj.actor,
+            "rating": dataObj.rating
+        }
+     });
+    }catch(e){
+        console.log(error)
+    }
+}
+
+exports.deleteMovie = async (collection, dataObj) =>{
+    try{
+        await collection.deleteOne(dataObj)
+    }catch(e){
+        console.log(error)
+    }
+}
