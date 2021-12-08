@@ -44,3 +44,26 @@ exports.deleteMovie = async (collection, dataObj) =>{
     }
 }
 
+exports.updateManyMovie = async(collection, dataObj) =>{
+    try{
+        
+        await collection.updateMany({
+            id: dataObj.id
+        },{$set: {
+            "title": dataObj.title,
+            "actor": dataObj.actor,
+            "rating": dataObj.rating
+        }})
+    }catch(e){
+        console.log(error)
+    }
+}
+
+exports.deleteMany = async(collection, dataObj) =>{
+    try{
+        collection.deleteMany(dataObj)
+    }catch(e){
+        console.log(error)
+    }
+
+}
